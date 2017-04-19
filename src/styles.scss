@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-image: url(http://localhost:3000/images/texture.jpg);
+
+  .game-wrapper {
+    max-width: 400px;
+    margin: auto;
+
+    #points {
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+
+      .card-wrapper {
+        width: 90px;
+        height: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform .3s linear;
+        transform-style: preserve-3d;
+        -webkit-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        cursor: pointer;
+
+        &.hovering {
+          transform: rotateY(0deg);
+        }
+
+        &.hidden {
+          opacity: 0;
+        }
+
+        .card {
+          width: 80px;
+          height: 100px;
+          position: relative;
+          backface-visibility: hidden;
+        }
+
+        .card-back {
+          position: absolute;
+          backface-visibility: hidden;
+          width: 80px;
+          height: 100px;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+}
