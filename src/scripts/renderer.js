@@ -1,8 +1,6 @@
 import cardsData from './cardsData';
 import config from '../../config';
 
-const cardBackSrc = `${config.imagesRoute}/card_back.png`;
-
 window.addEventListener('load', () => {
     const gameWrapper = document.getElementById('cardsWrapper');
 
@@ -10,11 +8,12 @@ window.addEventListener('load', () => {
         const cardWrapper = createEl('div').addClass('card-wrapper');
         cardWrapper.attr('data-id', cardData.id);
 
-        const cardElement = createEl('img').addClass('card');
-        cardElement.src = cardData.route;
+        const cardElement = createEl('div').addClass('card');
+        cardElement.style =
+            `background-image: url(${config.images.url}${config.images.routes.cards});` +
+            `background-position: ${cardData.x}px ${cardData.y}px`;
 
-        const cardBack = createEl('img').addClass('card-back');
-        cardBack.src = cardBackSrc;
+        const cardBack = createEl('div').addClass('card-back');
 
         cardWrapper.onclick = function() {
             const cardWrapperHovered = getEls('.hovering');

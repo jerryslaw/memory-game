@@ -1,13 +1,36 @@
 export const AVAILABLE_CARDS = [
-    'king',
-    'ace'
+    {
+        name: 'ace',
+        x: 0
+    },
+    {
+        name: 'king',
+        x: -948
+    },
+    {
+        name: 'jack',
+        x: -790
+    }
+
 ];
 
 export const CARD_SUFFIXES = [
-    'spade',
-    'club',
-    'heart',
-    'diamond'
+    {
+        name: 'club',
+        y: 0
+    },
+    {
+        name: 'diamond',
+        y: -123
+    },
+    {
+        name: 'heart',
+        y: -246
+    },
+    {
+        name: 'spade',
+        y: -368
+    }
 ];
 
 export const IMAGES_SUFFIXES = {

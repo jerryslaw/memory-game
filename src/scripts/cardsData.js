@@ -1,14 +1,17 @@
+import _cloneDeep from 'lodash.clonedeep';
 import _flatten from 'lodash.flatten';
 import _shuffle from 'lodash.shuffle';
 
 import * as IMAGES from '../constants/images';
-import config from '../../config';
 
 const cardRoutes = _flatten(IMAGES.AVAILABLE_CARDS.map((card) => {
-    const cardsWithRoutes = IMAGES.CARD_SUFFIXES.map((suffix) => {
-        return `${config.imagesRoute}/${card}_${suffix}${IMAGES.IMAGES_SUFFIXES.JPG}`;
+    return IMAGES.CARD_SUFFIXES.map((suffix) => {
+        return {
+            id: `${card.name}_${suffix.name}`,
+            x: card.x,
+            y: suffix.y
+        }
     });
-    return cardsWithRoutes.map((route, i) => ({id: `${card}_${i}`, route}));
 }));
 
-export default _shuffle(cardRoutes.concat(cardRoutes));
+export default _shuffle(cardRoutes.concat(_cloneDeep(cardRoutes)));

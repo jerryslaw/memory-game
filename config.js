@@ -5,5 +5,11 @@ export default {
         devServerUrl: 'http://localhost:8080',
         publicPath: 'http://localhost:8080'
     },
-    imagesRoute: 'http://localhost:3000/images'
+    images: {
+        url: 'http://localhost:3000/images',
+        routes: {
+            cards: '/cards.png',
+            cardBack: '/card_back.png'
+        }
+    }
 }
