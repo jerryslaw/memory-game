@@ -1,6 +1,82 @@
+@mixin button {
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 2px;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  background-color: dodgerblue;
+  cursor: pointer;
+  padding: 10px;
+}
+
+@mixin centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$greyBorder: 1px solid grey;
+
 body {
   margin: 0;
   padding: 0;
+}
+
+#modalWrapper {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.3);
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  &.active {
+    display: flex;
+
+    + .app-container {
+      filter: blur(4px);
+    }
+  }
+
+  .modal {
+    width: 300px;
+    height: 150px;
+    border: $greyBorder;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230,230,230);
+
+    .modal-header {
+      max-height: 30px;
+      flex: 1;
+      background-color: dodgerblue;
+      border-bottom: $greyBorder;
+      margin: 0;
+    }
+    #modalContent {
+      flex: 1;
+      border-bottom: $greyBorder;
+      padding: 15px;
+      @include centerContent();
+    }
+    .button-wrapper {
+      padding: 4px;
+      box-sizing: border-box;
+      @include centerContent();
+      background-color: lightsteelblue;
+
+      #modalCloseButton {
+        @include button();
+        width: 50px;
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 .app-container {
@@ -30,37 +106,24 @@ body {
 
     .start-button-wrapper {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include centerContent();
       padding: 20px 0;
 
       #startButton {
-        font-size: 20px;
-        color: #fff;
-        letter-spacing: 2px;
-        outline: 0;
-        border: 1px solid grey;
-        margin: 0;
-        background-color: dodgerblue;
-        cursor: pointer;
-        padding: 10px;
+        @include button();
+        border: $greyBorder;
       }
     }
 
     .cards-wrapper {
-      display: flex;
+      @include centerContent();
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
 
       .card-wrapper {
         width: 90px;
         height: 135px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include centerContent();
         transition: transform .3s linear;
         transform-style: preserve-3d;
         -webkit-transform: rotateY(180deg);

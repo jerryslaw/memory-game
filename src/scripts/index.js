@@ -1,13 +1,15 @@
+import { toCSSName } from './helpers';
 import './gameEngine';
 import './startButton';
 import './renderer';
+import './modal';
 
 window.createEl = document.createElement.bind(document);
 window.getEl = document.querySelector.bind(document);
 window.getEls = document.querySelectorAll.bind(document);
 window.getElsByClass = document.getElementsByClassName.bind(document);
 window.makeEl = function(options) {
-  const {elName, className, attr} = options;
+  const {elName, className, attr, styles} = options;
 
   if (!elName) {
       console.error('You have to provide which element to create!');
@@ -21,7 +23,11 @@ window.makeEl = function(options) {
   if (attr) {
       newEl.attr(attr.name, attr.value);
   }
-
+  if (styles) {
+      Object.keys(styles).forEach(key => {
+          newEl.style[key] = styles[key];
+      });
+  }
   return newEl;
 };
 Element.prototype.addClass = function(className) {

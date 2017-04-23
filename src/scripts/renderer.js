@@ -26,6 +26,7 @@ document.body.addEventListener(EVENTS.GAME_STARTED, () => {
             cards.forEach(card => cardsWrapper.removeChild(card));
 
             dispatchEvent(EVENTS.GAME_OVER);
+            return;
         }
 
         timer.innerHTML = parseTimeToHumanValues(new Date(difference));
@@ -43,11 +44,12 @@ document.body.addEventListener(EVENTS.GAME_STARTED, () => {
 
         const cardElement = makeEl({
             elName: 'div',
-            className: 'card'
+            className: 'card',
+            styles: {
+                backgroundImage: `url(${config.images.url}${config.images.routes.cards})`,
+                backgroundPosition: `${cardData.x}px ${cardData.y}px`
+            }
         });
-        cardElement.style =
-            `background-image: url(${config.images.url}${config.images.routes.cards});` +
-            `background-position: ${cardData.x}px ${cardData.y}px`;
 
         const cardBack = makeEl({
             elName: 'div',

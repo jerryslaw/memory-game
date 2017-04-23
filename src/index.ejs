@@ -2,13 +2,21 @@
 <head>
     <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+    <div id="modalWrapper">
+        <div class="modal">
+            <h3 class="modal-header"></h3>
+            <div id="modalContent"></div>
+            <div class="button-wrapper">
+                <button type="button" id="modalCloseButton">OK</button>
+            </div>
+        </div>
+    </div>
     <div class="app-container">
         <div class="game-wrapper">
-            <div id="timer"></div>
-            <div id="points">0</div>
+            <h4 id="timer"></h4>
+            <h5 id="points">0</h5>
             <div class="cards-wrapper" id="cardsWrapper"></div>
             <div class="start-button-wrapper">
                 <button type="button" id="startButton">Start game!</button>
