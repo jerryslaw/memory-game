@@ -11,5 +11,6 @@ export default {
             cards: '/cards.png',
             cardBack: '/card_back.png'
         }
-    }
+    },
+    timePerCardPair: 30 * 1000
 }

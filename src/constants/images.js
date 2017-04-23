@@ -5,12 +5,12 @@ export const AVAILABLE_CARDS = [
     },
     {
         name: 'king',
-        x: -948
-    },
-    {
-        name: 'jack',
-        x: -790
-    }
+        x: -948}
+    // },
+    // {
+    //     name: 'jack',
+    //     x: -790
+    // }
 
 ];
 

@@ -8,7 +8,7 @@ body {
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  background-image: url(http://localhost:3000/images/texture.jpg);
+  background-color: #000;
 
   .game-wrapper {
     max-width: 600px;
@@ -21,22 +21,30 @@ body {
       color: #fff;
     }
 
+    #timer {
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      color: #fff;
+    }
+
     .start-button-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 20px 0;
 
       #startButton {
         font-size: 20px;
         color: #fff;
-        border-radius: 5px;
         letter-spacing: 2px;
         outline: 0;
-        border: 0;
+        border: 1px solid grey;
         margin: 0;
         background-color: dodgerblue;
+        cursor: pointer;
+        padding: 10px;
       }
     }
 
@@ -67,6 +75,8 @@ body {
 
         &.hidden {
           opacity: 0;
+          cursor: pointer;
+          pointer-events: none;
         }
 
         .card {

@@ -1,9 +1,12 @@
-document.body.addEventListener('cardsRendered', function() {
+import { dispatchEvent } from './helpers';
+import * as EVENTS from '../constants/events';
+
+document.body.addEventListener(EVENTS.CARDS_RENDERED, () => {
    const cardsWrapper = getEl('#cardsWrapper');
    const pointsEl = getEl('#points');
-   const cardWrappers = getEls('.card-wrapper');
+   const cardWrappers = getElsByClass('card-wrapper');
 
-   cardsWrapper.addEventListener('click', function() {
+   cardsWrapper.addEventListener('click', () => {
        const hoveredCards = getEls('.hovering');
 
        if (hoveredCards.length === 2) {
@@ -11,19 +14,28 @@ document.body.addEventListener('cardsRendered', function() {
            const secondEl = hoveredCards[1];
 
            if (firstEl.attr('data-id') === secondEl.attr('data-id')) {
-               setTimeout(function() {
+               setTimeout(() => {
                    firstEl.removeClass('hovering').addClass('hidden');
                    secondEl.removeClass('hovering').addClass('hidden');
                    const points = parseInt(pointsEl.innerHTML);
                    pointsEl.innerHTML = points + 1;
+
+                   dispatchEvent(EVENTS.CARDS_REVEALED);
                }, 800);
            } else {
-               setTimeout(function() {
-                    for (let i = 0; i < cardWrappers.length; i++) {
-                        cardWrappers[i].removeClass('hovering');
-                    }
+               setTimeout(() => {
+                   cardWrappers.forEach((cardWrapper) => cardWrapper.removeClass('hovering'));
                }, 1200);
            }
        }
    })
+});
+
+document.body.addEventListener(EVENTS.CARDS_REVEALED, () => {
+    const cardWrappers = getElsByClass('card-wrapper');
+    const maybeOver = cardWrappers.every(cardWrapper => cardWrapper.containsClass('hidden'));
+
+    if (maybeOver) {
+        dispatchEvent(EVENTS.USER_WON);
+    }
 });
